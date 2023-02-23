@@ -1,0 +1,5 @@
+## the build output dir
+bin
+
+## the protoc output (generated golang)
+internal/protocol/**

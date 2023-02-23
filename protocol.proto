@@ -1,0 +1,41 @@
+/*
+A quick and dirty protobuf to test with.
+*/
+
+syntax = "proto3";
+package protocol;
+
+// the golang package name
+option go_package = "github.com/uminac/go-pb-stuff/internal/protocol";
+
+// a Thing is sent inside an Action
+message Thing {
+  // thing name
+  string name = 1;
+
+  // the possible types of things (golang doesn't have enums, so i wanted to see what it did)
+  enum ThingType {
+    TYPEA = 0;
+    TYPEB = 1;
+    TYPEC = 2;
+    TYPED = 3;
+  }
+
+  // the type of thing
+  ThingType type = 2;
+}
+
+// an action is the outer message carrying a thing
+message Action {
+  // a uuid for the action
+  string uuid = 1;
+
+  // the time the action was created
+  int64 time = 2;
+
+  // the sequence number of the action (for ordering)
+  uint64 sequence_number = 3;
+
+  // the thing
+  Thing thing = 4;
+}
